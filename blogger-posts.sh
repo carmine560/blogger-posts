@@ -7,7 +7,7 @@ readonly API_SERVICE=https://www.googleapis.com/blogger/v3/blogs
 # Obtain an access token.
 access_token=$($get_access_token) || exit
 if [ -z "$access_token" ]; then
-    echo access_token is zero. >&2
+    echo access_token is zero >&2
     exit 1
 fi
 
@@ -23,9 +23,14 @@ bp_list_posts() {
 ## @fn bp_get_post()
 ## @brief Retrieve a post.
 bp_get_post() {
-    curl -H "Authorization: Bearer $access_token" \
-         -X GET $curl_options $curl_silent_options \
-         $API_SERVICE/$BLOG_ID/posts/$post_id
+    if [ -z "$post_id" ]; then
+        echo post_id is zero >&2
+        exit 1
+    else
+        curl -H "Authorization: Bearer $access_token" \
+             -X GET $curl_options $curl_silent_options \
+             $API_SERVICE/$BLOG_ID/posts/$post_id
+    fi
 }
 
 ## @fn bp_add_post()
@@ -57,45 +62,68 @@ bp_add_post() {
     fi
 }
 
+## @fn bp_delete_post()
+## @brief Delete a post.
+bp_delete_post() {
+    if [ -z "$post_id" ]; then
+        echo post_id is zero >&2
+        exit 1
+    else
+        curl -H "Authorization: Bearer $access_token" \
+             -X DELETE $curl_options $curl_silent_options \
+             $API_SERVICE/$BLOG_ID/posts/$post_id
+    fi
+}
+
 ## @fn bp_transition_post_status()
 ## @brief Transition the post status.
 ## @param $status \c publish or \c revert.
 bp_transition_post_status() {
-    if [ "$1" == publish -o "$1" == revert ]; then
-        curl -H "Authorization: Bearer $access_token" \
-             -X POST $curl_options $curl_silent_options \
-             $API_SERVICE/$BLOG_ID/posts/$post_id/$1
+    if [ -z "$post_id" ]; then
+        echo post_id is zero >&2
+        exit 1
     else
-        echo Usage: ${FUNCNAME[0]} publish \| revert >&2
-        exit 2
+        if [ "$1" == publish -o "$1" == revert ]; then
+            curl -H "Authorization: Bearer $access_token" \
+                 -X POST $curl_options $curl_silent_options \
+                 $API_SERVICE/$BLOG_ID/posts/$post_id/$1
+        else
+            echo Usage: ${FUNCNAME[0]} publish \| revert >&2
+            exit 2
+        fi
     fi
 }
 
 ## @fn bp_partially_update_post()
-## @brief Update the value of the property.
+## @brief Partially update a post.
 ## @details Multiple pairs of a property and a value are allowed.
 ## @param $property A property without quotes.
 ## @param $value A value without quotes.
 bp_partially_update_post() {
-    if [ $# != 0 -a $(($# % 2)) == 0 ]; then
-        local index=0
-        local parameters=("$@")
-        local pairs
-        while [ "$index" -lt ${#parameters[*]} ]; do
-            if [ -z "$pairs" ]; then
-                pairs="\"${parameters[index]}\": \"${parameters[++index]}\""
-            else
-                pairs="$pairs, \"${parameters[index]}\": \"${parameters[++index]}\""
-            fi
-            ((++index))
-        done
-        curl -d "{$pairs}" \
-             -H "Authorization: Bearer $access_token" \
-             -H 'Content-Type: application/json; charset=utf-8' \
-             -X PATCH $curl_options $curl_silent_options \
-             $API_SERVICE/$BLOG_ID/posts/$post_id
+    if [ -z "$post_id" ]; then
+        echo post_id is zero >&2
+        exit 1
     else
-        echo Usage: ${FUNCNAME[0]} PROPERTY VALUE [PROPERTY VALUE ...] >&2
-        exit 2
+        if [ $# != 0 -a $(($# % 2)) == 0 ]; then
+            local index=0
+            local parameters=("$@")
+            local pairs
+            while [ "$index" -lt ${#parameters[*]} ]; do
+                if [ -z "$pairs" ]; then
+                    pairs="\"${parameters[index]}\": \"${parameters[++index]}\""
+                else
+                    pairs="$pairs, \"${parameters[index]}\": \"${parameters[++index]}\""
+                fi
+                ((++index))
+            done
+            curl -d "{$pairs}" \
+                 -H "Authorization: Bearer $access_token" \
+                 -H 'Content-Type: application/json; charset=utf-8' \
+                 -X PATCH $curl_options $curl_silent_options \
+                 $API_SERVICE/$BLOG_ID/posts/$post_id
+        else
+            echo Usage: ${FUNCNAME[0]} PROPERTY VALUE [PROPERTY VALUE ...] >&2
+            exit 2
+        fi
     fi
 }
