@@ -1,15 +1,16 @@
+#!/bin/bash
 ## @file
 ## @brief
 
 curl_options=-fSs
 readonly API_SERVICE=https://www.googleapis.com/blogger/v3/blogs
 
-default_configuration='get_access_token=GET_ACCESS_TOKEN
-readonly BLOG_ID=BLOG_ID'
-. configuration.sh && cfg_initialize_configuration || exit
-
 # Obtain an access token.
 access_token=$($get_access_token) || exit
+if [ -z "$access_token" ]; then
+    echo access_token is zero. >&2
+    exit 1
+fi
 
 ## @fn bp_list_posts()
 ## @brief List posts.
