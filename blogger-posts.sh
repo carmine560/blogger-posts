@@ -1,4 +1,3 @@
-#!/bin/bash
 ## @file
 ## @brief
 
@@ -21,6 +20,43 @@ bp_list_posts() {
          $API_SERVICE/$BLOG_ID/posts?$1
 }
 
+## @fn bp_get_post()
+## @brief Retrieve a post.
+bp_get_post() {
+    curl -H "Authorization: Bearer $access_token" \
+         -X GET $curl_options $curl_silent_options \
+         $API_SERVICE/$BLOG_ID/posts/$post_id
+}
+
+## @fn bp_add_post()
+## @brief Add a post.
+## @details Multiple pairs of a property and a value are allowed.
+## @param $property A property without quotes.
+## @param $value A value without quotes.
+bp_add_post() {
+    if [ $# != 0 -a $(($# % 2)) == 0 ]; then
+        local index=0
+        local parameters=("$@")
+        local pairs
+        while [ "$index" -lt ${#parameters[*]} ]; do
+            if [ -z "$pairs" ]; then
+                pairs="\"${parameters[index]}\": \"${parameters[++index]}\""
+            else
+                pairs="$pairs, \"${parameters[index]}\": \"${parameters[++index]}\""
+            fi
+            ((++index))
+        done
+        curl -d "{$pairs}" \
+             -H "Authorization: Bearer $access_token" \
+             -H 'Content-Type: application/json; charset=utf-8' \
+             -X POST $curl_options $curl_silent_options \
+             $API_SERVICE/$BLOG_ID/posts?$bp_add_post_parameters
+    else
+        echo Usage: ${FUNCNAME[0]} PROPERTY VALUE [PROPERTY VALUE ...] >&2
+        exit 2
+    fi
+}
+
 ## @fn bp_transition_post_status()
 ## @brief Transition the post status.
 ## @param $status \c publish or \c revert.
@@ -39,7 +75,7 @@ bp_transition_post_status() {
 ## @brief Update the value of the property.
 ## @details Multiple pairs of a property and a value are allowed.
 ## @param $property A property without quotes.
-## @param $value A value.
+## @param $value A value without quotes.
 bp_partially_update_post() {
     if [ $# != 0 -a $(($# % 2)) == 0 ]; then
         local index=0
@@ -47,9 +83,9 @@ bp_partially_update_post() {
         local pairs
         while [ "$index" -lt ${#parameters[*]} ]; do
             if [ -z "$pairs" ]; then
-                pairs="\"${parameters[index]}\": ${parameters[++index]}"
+                pairs="\"${parameters[index]}\": \"${parameters[++index]}\""
             else
-                pairs="$pairs, \"${parameters[index]}\": ${parameters[++index]}"
+                pairs="$pairs, \"${parameters[index]}\": \"${parameters[++index]}\""
             fi
             ((++index))
         done
