@@ -4,7 +4,7 @@ set -o pipefail
 
 default_configuration='get_access_token=GET_ACCESS_TOKEN
 readonly BLOG_ID=BLOG_ID
-bp_add_post_parameters=isDraft=true'
+bp_add_post_parameters='
 . configuration.sh && cfg_initialize_configuration || exit
 
 . blogger-posts.sh || exit
@@ -16,6 +16,15 @@ if [[ $post_id =~ [0-9]+ ]]; then
 else
     echo Failed to add a post >&2
     exit 1
+fi
+
+bp_transition_post_status revert
+exit_status=$?
+if [ $exit_status == 0 ]; then
+    echo $post_id was reverted
+else
+    echo Failed to revert $post_id >&2
+    exit $exit_status
 fi
 
 bp_transition_post_status publish
