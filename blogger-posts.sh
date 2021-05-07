@@ -14,6 +14,7 @@ fi
 ## @fn bp_list_posts()
 ## @brief List posts.
 ## @param $parameters Optional parameters.
+## @return A response body in JSON.
 bp_list_posts() {
     curl -H "Authorization: Bearer $access_token" \
          -X GET $curl_options $curl_silent_options \
@@ -22,6 +23,7 @@ bp_list_posts() {
 
 ## @fn bp_get_post()
 ## @brief Retrieve a post.
+## @return A response body in JSON.
 bp_get_post() {
     if [ -z "$post_id" ]; then
         echo post_id is zero >&2
@@ -38,6 +40,7 @@ bp_get_post() {
 ## @details Multiple pairs of a property and a value are allowed.
 ## @param $property A property without quotes.
 ## @param $value A value without quotes.
+## @return A response body in JSON.
 bp_add_post() {
     if [ $# != 0 -a $(($# % 2)) == 0 ]; then
         local index=0
@@ -78,6 +81,7 @@ bp_delete_post() {
 ## @fn bp_transition_post_status()
 ## @brief Transition the post status.
 ## @param $status \c publish or \c revert.
+## @return A response body in JSON.
 bp_transition_post_status() {
     if [ -z "$post_id" ]; then
         echo post_id is zero >&2
@@ -99,6 +103,7 @@ bp_transition_post_status() {
 ## @details Multiple pairs of a property and a value are allowed.
 ## @param $property A property without quotes.
 ## @param $value A value without quotes.
+## @return A response body in JSON.
 bp_partially_update_post() {
     if [ -z "$post_id" ]; then
         echo post_id is zero >&2
