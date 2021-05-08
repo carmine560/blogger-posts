@@ -61,6 +61,10 @@ test-blogger-posts.sh
 ![A screenshot of GNOME Terminal where test-blogger-posts.sh was
 executed.](https://dl.dropboxusercontent.com/s/1jas1x44uaw5ewl/20210509T004526.png)
 
+This script creates the directory
+`$HOME/Downloads/test-blogger-posts.sh` if it does not exist and saves
+response bodies in there.
+
 ## Usage ##
 
 The functions of the script `blogger-posts.sh` require the variable
