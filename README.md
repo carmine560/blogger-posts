@@ -7,8 +7,8 @@ A Bash script that adds, updates, or deletes a post through the
 
 ## Prerequisites ##
 
-This script has been tested on Debian bullseye on WSL 1 and uses the
-following packages:
+This script has been tested for Blogger on Debian bullseye on WSL 1
+and uses the following packages:
 
   * [curl](https://curl.se/) for HTTP requests
   * The testing script uses [jq](https://stedolan.github.io/jq/) to
