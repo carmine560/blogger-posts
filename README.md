@@ -64,7 +64,7 @@ executed.](https://dl.dropboxusercontent.com/s/1jas1x44uaw5ewl/20210509T004526.p
 ## Usage ##
 
 The functions of the script `blogger-posts.sh` require the variable
-`post_id` to be assigned a value except for the function
+`post_id` to be assigned a value except for the functions
 `bp_list_posts` and `bp_add_post`.  Also, the following functions have
 arguments.
 
