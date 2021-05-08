@@ -2,8 +2,8 @@
 
 <!-- Bash script that add, update, or remove post through Blogger API -->
 
-A Bash script that add, update, or remove a post through the Blogger
-API.
+A Bash script that add, update, or remove a post through the [Blogger
+API](https://developers.google.com/blogger).
 
 ## Prerequisites ##
 
@@ -47,7 +47,7 @@ the following variables in it with yours.  For example:
 
 ``` shell
 get_access_token='google-oauth-token.sh -a'
-readonly BLOG_ID=BLOG_ID
+readonly BLOG_ID=0000000000000000000
 ```
 
 Then:
