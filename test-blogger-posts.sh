@@ -12,7 +12,8 @@ bp_add_post_parameters='
 # API.
 . blogger-posts.sh || exit
 
-# Test each function.
+# Add a post and assign the value of the key `id` in the response body
+# to the variable `post_id`.
 post_id=$(bp_add_post title 'Document Title' content '<p>A paragraph.</p>' |
               jq -r .id)
 if [[ $post_id =~ [0-9]+ ]]; then
@@ -22,6 +23,8 @@ else
     exit 1
 fi
 
+# Test each function that requires the variable `post_id` except for
+# the function `bp_list_posts`.
 bp_test_function bp_transition_post_status revert
 bp_test_function bp_transition_post_status publish
 bp_test_function bp_list_posts
