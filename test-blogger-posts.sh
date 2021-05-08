@@ -14,7 +14,7 @@ bp_add_post_parameters='
 
 # Add a post and assign the value of the key `id` in the response body
 # to the variable `post_id`.
-post_id=$(bp_add_post title 'Document Title' content '<p>A paragraph.</p>' |
+post_id=$(bp_add_post title 'Post Title' content '<p>A paragraph.</p>' |
               jq -r .id)
 if [[ $post_id =~ [0-9]+ ]]; then
     echo $post_id was added
