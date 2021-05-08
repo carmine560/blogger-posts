@@ -42,10 +42,10 @@ cp -i *.sh ~/.local/bin
 
 ## Testing ##
 
-If the configuration file `~/.config/test-blogger-posts.cfg` does not
-exist, the testing script `test-blogger-posts.sh` will create it.
-Replace the values of the following variables in it with yours.  For
-example:
+The testing script `test-blogger-posts.sh` will create the
+configuration file `~/.config/test-blogger-posts.cfg` if it does not
+exist.  Replace the values of the following variables in it with
+yours.  For example:
 
 ``` shell
 get_access_token='google-oauth-token.sh -a'
