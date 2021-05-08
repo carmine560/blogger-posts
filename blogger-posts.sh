@@ -138,18 +138,18 @@ bp_partially_update_post() {
 ## @brief Test a function.
 bp_test() {
     if [ -d "$HOME/Downloads" ]; then
-        local log="$HOME/Downloads/${0##*/}"
+        local log_root="$HOME/Downloads/${0##*/}"
     else
-        local log="$HOME/${0##*/}"
+        local log_root="$HOME/${0##*/}"
     fi
-    if [ ! -d "$log" ]; then
-        mkdir -v "$log" || exit
+    if [ ! -d "$log_root" ]; then
+        mkdir -v "$log_root" || exit
     fi
-    file="$log/$$-$(printf %04d $BASH_LINENO)-${1##*/}$bp_test_suffix"
-    "$@" >"$file"
+    log="$log_root/$$-$(printf %04d $BASH_LINENO)-${1##*/}$bp_test_suffix"
+    "$@" >"$log"
     local exit_status=$?
-    if [ ! -s "$file" ]; then
-        rm "$file"
+    if [ ! -s "$log" ]; then
+        rm "$log"
     fi
     if [ $exit_status == 0 ]; then
         echo Succeeded to "$@"
