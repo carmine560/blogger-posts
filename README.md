@@ -69,4 +69,4 @@ executed.](https://dl.dropboxusercontent.com/s/1jas1x44uaw5ewl/20210509T004526.p
 
   * A practical example using this script: [Bash Scripting to Update
     Posts for Local Changes through Blogger
-    API](https://carmine560.blogspot.com/2021/04/bash-scripting-to-update-posts-through.html)
+    API](https://carmine560.blogspot.com/2021/04/bash-scripting-to-update-posts-through.html).
