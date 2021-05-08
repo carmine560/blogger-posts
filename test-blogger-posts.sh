@@ -8,7 +8,7 @@ readonly BLOG_ID=BLOG_ID
 bp_add_post_parameters='
 . configuration.sh && cfg_initialize_configuration || exit
 
-# Load functions to add, update, remove a post through the Blogger
+# Load functions to add, update, or delete a post through the Blogger
 # API.
 . blogger-posts.sh || exit
 
