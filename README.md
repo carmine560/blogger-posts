@@ -58,6 +58,9 @@ Then:
 test-blogger-posts.sh
 ```
 
+![A screenshot of GNOME Terminal where test-blogger-posts.sh was
+executed.](https://dl.dropboxusercontent.com/s/me59z2hsz4cg5vi/20210509T001544.png)
+
 ## License ##
 
 [MIT](LICENSE.md)
