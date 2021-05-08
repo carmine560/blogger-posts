@@ -63,7 +63,8 @@ executed.](https://dl.dropboxusercontent.com/s/1jas1x44uaw5ewl/20210509T004526.p
 
 ## Usage ##
 
-The functions require the variable `post_id` except for the function
+The functions of the script `blogger-posts.sh` require the variable
+`post_id` to be assigned <!-- have --> a value except for the function
 `bp_list_posts` and `bp_add_post`.
 
 The functions `bp_add_post` and `bp_partially_update_post` have
