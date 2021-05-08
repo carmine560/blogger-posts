@@ -2,13 +2,17 @@
 
 set -o pipefail
 
+# Set the configurable variables.
 default_configuration='get_access_token=GET_ACCESS_TOKEN
 readonly BLOG_ID=BLOG_ID
 bp_add_post_parameters='
 . configuration.sh && cfg_initialize_configuration || exit
 
+# Load functions to add, update, remove a post through the Blogger
+# API.
 . blogger-posts.sh || exit
 
+# Test each function.
 post_id=$(bp_add_post title 'Document Title' content '<p>A paragraph.</p>' |
               jq -r .id)
 if [[ $post_id =~ [0-9]+ ]]; then
