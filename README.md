@@ -61,6 +61,25 @@ test-blogger-posts.sh
 ![A screenshot of GNOME Terminal where test-blogger-posts.sh was
 executed.](https://dl.dropboxusercontent.com/s/1jas1x44uaw5ewl/20210509T004526.png)
 
+## Usage ##
+
+The functions require the variable `post_id` except for the function
+`bp_list_posts` and `bp_add_post`.
+
+The functions `bp_add_post` and `bp_partially_update_post` have
+multiple pairs of a property and a value as arguments.
+
+``` shell
+bp_add_post title 'Post Title' content '<p>A paragraph.</p>'
+```
+
+The function `bp_transition_post_status` have the status `publish` or
+`revert` as an argument.
+
+``` shell
+bp_transition_post_status publish
+```
+
 ## License ##
 
 [MIT](LICENSE.md)
