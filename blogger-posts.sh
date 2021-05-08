@@ -3,6 +3,7 @@
 
 curl_options=-fSs
 readonly API_SERVICE=https://www.googleapis.com/blogger/v3/blogs
+bp_test_suffix=.json
 
 # Obtain an access token.
 access_token=$($get_access_token) || exit
@@ -130,5 +131,30 @@ bp_partially_update_post() {
             echo Usage: ${FUNCNAME[0]} PROPERTY VALUE [PROPERTY VALUE ...] >&2
             exit 2
         fi
+    fi
+}
+
+## @fn bp_test()
+## @brief Test a function.
+bp_test() {
+    if [ -d "$HOME/Downloads" ]; then
+        local log="$HOME/Downloads/${0##*/}"
+    else
+        local log="$HOME/${0##*/}"
+    fi
+    if [ ! -d "$log" ]; then
+        mkdir -v "$log" || exit
+    fi
+    file="$log/$$-$(printf %04d $BASH_LINENO)-${1##*/}$bp_test_suffix"
+    "$@" >"$file"
+    local exit_status=$?
+    if [ ! -s "$file" ]; then
+        rm "$file"
+    fi
+    if [ $exit_status == 0 ]; then
+        echo Succeeded to "$@"
+    else
+        echo Failed to "$@"
+        exit $exit_status
     fi
 }
