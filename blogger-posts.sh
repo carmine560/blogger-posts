@@ -3,7 +3,7 @@
 
 curl_options=-fSs
 readonly API_SERVICE=https://www.googleapis.com/blogger/v3/blogs
-bp_test_suffix=.json
+bp_test_function_suffix=.json
 
 # Obtain an access token.
 access_token=$($get_access_token) || exit
@@ -134,9 +134,9 @@ bp_partially_update_post() {
     fi
 }
 
-## @fn bp_test()
+## @fn bp_test_function()
 ## @brief Test a function.
-bp_test() {
+bp_test_function() {
     if [ -d "$HOME/Downloads" ]; then
         local log_root="$HOME/Downloads/${0##*/}"
     else
@@ -145,7 +145,7 @@ bp_test() {
     if [ ! -d "$log_root" ]; then
         mkdir -v "$log_root" || exit
     fi
-    log="$log_root/$$-$(printf %04d $BASH_LINENO)-${1##*/}$bp_test_suffix"
+    log="$log_root/$$-$(printf %04d $BASH_LINENO)-${1##*/}$bp_test_function_suffix"
     "$@" >"$log"
     local exit_status=$?
     if [ ! -s "$log" ]; then
