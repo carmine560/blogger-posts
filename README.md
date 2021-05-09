@@ -3,7 +3,7 @@
 <!-- Bash script that adds, updates, or deletes post through Blogger API -->
 
 A Bash script that adds, updates, or deletes a post through the
-[Blogger API](https://developers.google.com/blogger).
+[Blogger API](https://developers.google.com/blogger) v3.0.
 
 ## Prerequisites ##
 
