@@ -40,7 +40,7 @@ bp_get_post() {
 ## @brief Add a post.
 ## @details Multiple pairs of a property and a value are allowed.
 ## @param $property A property without quotes.
-## @param $value A value without quotes.
+## @param $value A value.
 ## @return A response body in JSON.
 bp_add_post() {
     if [ $# != 0 -a $(($# % 2)) == 0 ]; then
@@ -49,9 +49,9 @@ bp_add_post() {
         local pairs
         while [ "$index" -lt ${#parameters[*]} ]; do
             if [ -z "$pairs" ]; then
-                pairs="\"${parameters[index]}\": \"${parameters[++index]}\""
+                pairs="\"${parameters[index]}\": ${parameters[++index]}"
             else
-                pairs="$pairs, \"${parameters[index]}\": \"${parameters[++index]}\""
+                pairs="$pairs, \"${parameters[index]}\": ${parameters[++index]}"
             fi
             ((++index))
         done
@@ -103,7 +103,7 @@ bp_transition_post_status() {
 ## @brief Partially update a post.
 ## @details Multiple pairs of a property and a value are allowed.
 ## @param $property A property without quotes.
-## @param $value A value without quotes.
+## @param $value A value.
 ## @return A response body in JSON.
 bp_partially_update_post() {
     if [ -z "$post_id" ]; then
@@ -116,9 +116,9 @@ bp_partially_update_post() {
             local pairs
             while [ "$index" -lt ${#parameters[*]} ]; do
                 if [ -z "$pairs" ]; then
-                    pairs="\"${parameters[index]}\": \"${parameters[++index]}\""
+                    pairs="\"${parameters[index]}\": ${parameters[++index]}"
                 else
-                    pairs="$pairs, \"${parameters[index]}\": \"${parameters[++index]}\""
+                    pairs="$pairs, \"${parameters[index]}\": ${parameters[++index]}"
                 fi
                 ((++index))
             done

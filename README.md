@@ -76,7 +76,7 @@ The functions `bp_add_post` and `bp_partially_update_post` have
 multiple pairs of a property and a value as arguments:
 
 ``` shell
-bp_add_post title 'Post Title' content '<p>A paragraph.</p>'
+bp_add_post title '"Post Title"' content '"<p>A paragraph.</p>"'
 ```
 
 The function `bp_transition_post_status` have the status `publish` or
