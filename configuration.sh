@@ -28,3 +28,6 @@ EOF
         fi
     fi
 }
+if [ "$1" == initialize ]; then
+    cfg_initialize_configuration "$2"
+fi

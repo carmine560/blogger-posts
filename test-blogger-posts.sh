@@ -6,7 +6,7 @@ set -o pipefail
 default_configuration='get_access_token=GET_ACCESS_TOKEN
 readonly BLOG_ID=BLOG_ID
 bp_add_post_parameters='
-. configuration.sh && cfg_initialize_configuration || exit
+. configuration.sh initialize || exit
 
 # Load functions to add, update, or delete a post through the Blogger
 # API.
