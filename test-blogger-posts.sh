@@ -29,5 +29,6 @@ bp_test_function bp_transition_post_status revert
 bp_test_function bp_transition_post_status publish
 bp_test_function bp_list_posts
 bp_test_function bp_get_post
-bp_test_function bp_partially_update_post content '"<p>An updated paragraph.</p>"'
+bp_test_function bp_partially_update_post content \
+                 '"<p>An updated paragraph.</p>"'
 bp_test_function bp_delete_post
