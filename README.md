@@ -95,4 +95,3 @@ bp_transition_post_status publish
   * [Bash Scripting to Update Posts for Local Changes through Blogger
     API](https://carmine560.blogspot.com/2021/04/bash-scripting-to-update-posts-through.html):
     a blog post with a practical example using this script.
-Sun 09 May 2021 11:27:24 PM JST
