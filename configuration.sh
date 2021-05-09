@@ -1,5 +1,7 @@
 ## @file
 ## @brief Read and write the plain text configuration file.
+## @param string \c initialize invokes \c
+## cfg_initialize_configuration.
 
 if [ -d "$HOME/.config" ]; then
     readonly CONFIGURATION=$HOME/.config/$(basename "$0" .${0##*.}).cfg
