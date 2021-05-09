@@ -58,7 +58,7 @@ bp_add_post() {
         curl -d "{$pairs}" \
              -H "Authorization: Bearer $access_token" \
              -H 'Content-Type: application/json; charset=utf-8' \
-             -X POST $curl_options $curl_silent_options \
+             -X POST $curl_options \
              $API_SERVICE/$BLOG_ID/posts?$bp_add_post_parameters
     else
         echo Usage: ${FUNCNAME[0]} PROPERTY VALUE [PROPERTY VALUE ...] >&2
