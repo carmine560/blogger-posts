@@ -19,7 +19,7 @@ fi
 bp_list_posts() {
     curl -H "Authorization: Bearer $access_token" \
          -X GET $curl_options $curl_silent_options \
-         $API_SERVICE/$BLOG_ID/posts?$1
+         $API_SERVICE/$BLOG_ID/${resource:=posts}?$1
 }
 
 ## @fn bp_get_post()
@@ -32,7 +32,7 @@ bp_get_post() {
     else
         curl -H "Authorization: Bearer $access_token" \
              -X GET $curl_options $curl_silent_options \
-             $API_SERVICE/$BLOG_ID/posts/$post_id
+             $API_SERVICE/$BLOG_ID/${resource:=posts}/$post_id
     fi
 }
 
@@ -59,7 +59,7 @@ bp_add_post() {
              -H "Authorization: Bearer $access_token" \
              -H 'Content-Type: application/json; charset=utf-8' \
              -X POST $curl_options \
-             $API_SERVICE/$BLOG_ID/posts?$bp_add_post_parameters
+             $API_SERVICE/$BLOG_ID/${resource:=posts}?$bp_add_post_parameters
     else
         echo Usage: ${FUNCNAME[0]} PROPERTY VALUE [PROPERTY VALUE ...] >&2
         exit 2
@@ -75,7 +75,7 @@ bp_delete_post() {
     else
         curl -H "Authorization: Bearer $access_token" \
              -X DELETE $curl_options $curl_silent_options \
-             $API_SERVICE/$BLOG_ID/posts/$post_id
+             $API_SERVICE/$BLOG_ID/${resource:=posts}/$post_id
     fi
 }
 
@@ -126,7 +126,7 @@ bp_partially_update_post() {
                  -H "Authorization: Bearer $access_token" \
                  -H 'Content-Type: application/json; charset=utf-8' \
                  -X PATCH $curl_options $curl_silent_options \
-                 $API_SERVICE/$BLOG_ID/posts/$post_id
+                 $API_SERVICE/$BLOG_ID/${resource:=posts}/$post_id
         else
             echo Usage: ${FUNCNAME[0]} PROPERTY VALUE [PROPERTY VALUE ...] >&2
             exit 2
