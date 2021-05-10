@@ -14,8 +14,8 @@ fi
 
 ## @fn bp_list_posts()
 ## @brief List posts.
-## @details The value of the variable \c resource can have \c posts or
-## \c pages.
+## @details The variable \c resource can have the value \c posts or \c
+## pages.
 ## @param $parameters Optional parameters.
 ## @return A response body in JSON.
 bp_list_posts() {
@@ -26,8 +26,8 @@ bp_list_posts() {
 
 ## @fn bp_get_post()
 ## @brief Retrieve a post.
-## @details The value of the variable \c resource can have \c posts or
-## \c pages.
+## @details The variable \c resource can have the value \c posts or \c
+## pages.
 ## @return A response body in JSON.
 bp_get_post() {
     if [ -z "$post_id" ]; then
@@ -43,7 +43,7 @@ bp_get_post() {
 ## @fn bp_add_post()
 ## @brief Add a post.
 ## @details Multiple pairs of a property and a value are allowed.  The
-## value of the variable \c resource can have \c posts or \c pages.
+## variable \c resource can have the value \c posts or \c pages.
 ## @param $property A property without quotes.
 ## @param $value A value.
 ## @return A response body in JSON.
@@ -73,8 +73,8 @@ bp_add_post() {
 
 ## @fn bp_delete_post()
 ## @brief Delete a post.
-## @details The value of the variable \c resource can have \c posts or
-## \c pages.
+## @details The variable \c resource can have the value \c posts or \c
+## pages.
 bp_delete_post() {
     if [ -z "$post_id" ]; then
         echo post_id is zero >&2
@@ -109,7 +109,7 @@ bp_transition_post_status() {
 ## @fn bp_partially_update_post()
 ## @brief Partially update a post.
 ## @details Multiple pairs of a property and a value are allowed.  The
-## value of the variable \c resource can have \c posts or \c pages.
+## variable \c resource can have the value \c posts or \c pages.
 ## @param $property A property without quotes.
 ## @param $value A value.
 ## @return A response body in JSON.
