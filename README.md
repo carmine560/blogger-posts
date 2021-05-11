@@ -80,7 +80,6 @@ To retrieve a resource, assign a value to the variable `resource_id`
 in advance:
 
 ``` shell
-resource_id=0000000000000000000
 bp_get_resource
 ```
 
@@ -94,24 +93,21 @@ To delete a resource, assign a value to the variable `resource_id`
 in advance:
 
 ``` shell
-resource_id=0000000000000000000
 bp_delete_resource
 ```
 
 To update a resource, assign a value to the variable `resource_id` in
-advance, then pass multiple property-value pairs as arguments:
+advance, and pass multiple property-value pairs as arguments:
 
 ``` shell
-resource_id=0000000000000000000
 bp_partially_update_resource content '"<p>An updated paragraph.</p>"'
 ```
 
 To transition the resource status, assign a value to the variable
-`resource_id` in advance, then pass the status `publish` or `revert`
-as an argument:
+`resource_id` in advance, and pass the status `publish` or `revert` as
+an argument:
 
 ``` shell
-resource_id=0000000000000000000
 bp_transition_post_status publish
 ```
 
