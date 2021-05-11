@@ -15,7 +15,7 @@ fi
 
 ## @fn bp_list_resources()
 ## @brief List resources.
-## @details The variable \c resource can have the value \c posts
+## @details The variable \c resource_type can have the value \c posts
 ## (default) or \c pages.
 ## @param $parameters Optional parameters.
 ## @return A response body in JSON.
@@ -27,8 +27,9 @@ bp_list_resources() {
 
 ## @fn bp_get_resource()
 ## @brief Retrieve a resource.
-## @details The variable \c resource can have the value \c posts
-## (default) or \c pages.
+## @details The variable \c resource_type can have the value \c posts
+## (default) or \c pages.  The variable \c resource_id needs to be
+## assigned a value.
 ## @return A response body in JSON.
 bp_get_resource() {
     if [ -z "$resource_id" ]; then
@@ -43,9 +44,9 @@ bp_get_resource() {
 
 ## @fn bp_add_resource()
 ## @brief Add a resource.
-## @details Multiple pairs of a property and a value are allowed.  The
-## variable \c resource can have the value \c posts (default) or \c
-## pages.
+## @details The variable \c resource_type can have the value \c posts
+## (default) or \c pages.  Multiple pairs of a property and a value
+## are allowed.
 ## @param $property A property without quotes.
 ## @param $value A value.
 ## @return A response body in JSON.
@@ -75,8 +76,9 @@ bp_add_resource() {
 
 ## @fn bp_delete_resource()
 ## @brief Delete a resource.
-## @details The variable \c resource can have the value \c posts
-## (default) or \c pages.
+## @details The variable \c resource_type can have the value \c posts
+## (default) or \c pages.  The variable \c resource_id needs to be
+## assigned a value.
 bp_delete_resource() {
     if [ -z "$resource_id" ]; then
         echo resource_id is zero >&2
@@ -89,9 +91,10 @@ bp_delete_resource() {
 }
 
 ## @fn bp_transition_resource_status()
-## @brief Transition the post status.
-## @details The variable \c resource can have the value \c posts
-## (default) or \c pages.
+## @brief Transition the resource_type status.
+## @details The variable \c resource_type can have the value \c posts
+## (default) or \c pages.  The variable \c resource_id needs to be
+## assigned a value.
 ## @param $status \c publish or \c revert.
 ## @return A response body in JSON.
 bp_transition_resource_status() {
@@ -112,9 +115,10 @@ bp_transition_resource_status() {
 
 ## @fn bp_partially_update_resource()
 ## @brief Partially update a resource.
-## @details Multiple pairs of a property and a value are allowed.  The
-## variable \c resource can have the value \c posts (default) or \c
-## pages.
+## @details The variable \c resource_type can have the value \c posts
+## (default) or \c pages.  The variable \c resource_id needs to be
+## assigned a value.  Multiple pairs of a property and a value are
+## allowed.
 ## @param $property A property without quotes.
 ## @param $value A value.
 ## @return A response body in JSON.

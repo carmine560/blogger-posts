@@ -30,13 +30,11 @@ for i in '' pages; do
 
     # Test each function that requires the variable `resource_id`
     # except for the function `bp_list_resources`.
-    if [ -z "$resource_type" -o "$resource_type" == posts ]; then
-        bp_test_function bp_transition_resource_status revert
-        bp_test_function bp_transition_resource_status publish
-    fi
     bp_test_function bp_list_resources status=live
     bp_test_function bp_get_resource
     bp_test_function bp_partially_update_resource content \
                      '"<p>An updated paragraph.</p>"'
+    bp_test_function bp_transition_resource_status revert
+    bp_test_function bp_transition_resource_status publish
     bp_test_function bp_delete_resource
 done
