@@ -1,9 +1,9 @@
 # blogger-posts #
 
-<!-- Bash script that adds, updates, or deletes post through Blogger API -->
+<!-- Bash script that adds, updates, or deletes post or page through Blogger API -->
 
-A Bash script that adds, updates, or deletes a post through the
-[Blogger API](https://developers.google.com/blogger) v3.0.
+A Bash script that adds, updates, or deletes a post or page through
+the [Blogger API](https://developers.google.com/blogger) v3.0.
 
 ## Prerequisites ##
 
@@ -21,7 +21,7 @@ sudo apt install curl
 sudo apt install jq
 ```
 
-Also, use [google-oauth-token](google-oauth-token.md) to obtain an
+Also, I use [google-oauth-token](google-oauth-token.md) to obtain an
 access token from the Google Authorization Server.
 
 ## Installation ##
@@ -58,7 +58,7 @@ test-blogger-posts.sh
 ```
 
 ![A screenshot of GNOME Terminal where test-blogger-posts.sh was
-executed.](https://dl.dropboxusercontent.com/s/1jas1x44uaw5ewl/20210509T004526.png)
+executed.](https://dl.dropboxusercontent.com/s/yjqx11ynk5yv0ug/20210511T173128.png)
 
 This script creates the directory
 `$HOME/Downloads/test-blogger-posts.sh` if it does not exist and saves
@@ -67,15 +67,15 @@ response bodies in there.
 ## Usage ##
 
 The functions of the script `blogger-posts.sh` require the variable
-`post_id` to be assigned a value except for the functions
-`bp_list_posts` and `bp_add_post`.  Also, the following functions have
-arguments.
+`resource_id` to be assigned a value except for the functions
+`bp_list_resources` and `bp_add_resource`.  Also, the following
+functions have arguments.
 
-The functions `bp_add_post` and `bp_partially_update_post` have
-multiple pairs of a property and a value as arguments:
+The functions `bp_add_resource` and `bp_partially_update_resource`
+have multiple pairs of a property and a value as arguments:
 
 ``` shell
-bp_add_post title '"Post Title"' content '"<p>A paragraph.</p>"'
+bp_add_resource title '"Resource Title"' content '"<p>A paragraph.</p>"'
 ```
 
 The function `bp_transition_post_status` have the status `publish` or

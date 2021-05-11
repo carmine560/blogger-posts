@@ -1,5 +1,5 @@
 ## @file
-## @brief Add, update, remove a post through the Blogger API.
+## @brief Add, update, remove a resource through the Blogger API.
 
 curl_options=-fSs
 readonly API_SERVICE=https://www.googleapis.com/blogger/v3/blogs
@@ -12,42 +12,43 @@ if [ -z "$access_token" ]; then
     exit 1
 fi
 
-## @fn bp_list_posts()
-## @brief List posts.
-## @details The variable \c resource can have the value \c posts or \c
-## pages.
+## @fn bp_list_resources()
+## @brief List resources.
+## @details The variable \c resource can have the value \c posts
+## (default) or \c pages.
 ## @param $parameters Optional parameters.
 ## @return A response body in JSON.
-bp_list_posts() {
+bp_list_resources() {
     curl -H "Authorization: Bearer $access_token" \
          -X GET $curl_options $curl_silent_options \
-         $API_SERVICE/$BLOG_ID/${resource:=posts}?$1
+         $API_SERVICE/$BLOG_ID/${resource_type:=posts}?$1
 }
 
-## @fn bp_get_post()
-## @brief Retrieve a post.
-## @details The variable \c resource can have the value \c posts or \c
-## pages.
+## @fn bp_get_resource()
+## @brief Retrieve a resource.
+## @details The variable \c resource can have the value \c posts
+## (default) or \c pages.
 ## @return A response body in JSON.
-bp_get_post() {
-    if [ -z "$post_id" ]; then
-        echo post_id is zero >&2
+bp_get_resource() {
+    if [ -z "$resource_id" ]; then
+        echo resource_id is zero >&2
         exit 1
     else
         curl -H "Authorization: Bearer $access_token" \
              -X GET $curl_options $curl_silent_options \
-             $API_SERVICE/$BLOG_ID/${resource:=posts}/$post_id
+             $API_SERVICE/$BLOG_ID/${resource_type:=posts}/$resource_id
     fi
 }
 
-## @fn bp_add_post()
-## @brief Add a post.
+## @fn bp_add_resource()
+## @brief Add a resource.
 ## @details Multiple pairs of a property and a value are allowed.  The
-## variable \c resource can have the value \c posts or \c pages.
+## variable \c resource can have the value \c posts (default) or \c
+## pages.
 ## @param $property A property without quotes.
 ## @param $value A value.
 ## @return A response body in JSON.
-bp_add_post() {
+bp_add_resource() {
     if [ $# != 0 -a $(($# % 2)) == 0 ]; then
         local index=0
         local parameters=("$@")
@@ -64,25 +65,25 @@ bp_add_post() {
              -H "Authorization: Bearer $access_token" \
              -H 'Content-Type: application/json; charset=utf-8' \
              -X POST $curl_options \
-             $API_SERVICE/$BLOG_ID/${resource:=posts}?$bp_add_post_parameters
+             $API_SERVICE/$BLOG_ID/${resource_type:=posts}?$bp_add_resource_parameters
     else
         echo Usage: ${FUNCNAME[0]} PROPERTY VALUE [PROPERTY VALUE ...] >&2
         exit 2
     fi
 }
 
-## @fn bp_delete_post()
-## @brief Delete a post.
-## @details The variable \c resource can have the value \c posts or \c
-## pages.
-bp_delete_post() {
-    if [ -z "$post_id" ]; then
-        echo post_id is zero >&2
+## @fn bp_delete_resource()
+## @brief Delete a resource.
+## @details The variable \c resource can have the value \c posts
+## (default) or \c pages.
+bp_delete_resource() {
+    if [ -z "$resource_id" ]; then
+        echo resource_id is zero >&2
         exit 1
     else
         curl -H "Authorization: Bearer $access_token" \
              -X DELETE $curl_options $curl_silent_options \
-             $API_SERVICE/$BLOG_ID/${resource:=posts}/$post_id
+             $API_SERVICE/$BLOG_ID/${resource_type:=posts}/$resource_id
     fi
 }
 
@@ -91,14 +92,14 @@ bp_delete_post() {
 ## @param $status \c publish or \c revert.
 ## @return A response body in JSON.
 bp_transition_post_status() {
-    if [ -z "$post_id" ]; then
-        echo post_id is zero >&2
+    if [ -z "$resource_id" ]; then
+        echo resource_id is zero >&2
         exit 1
     else
         if [ "$1" == publish -o "$1" == revert ]; then
             curl -H "Authorization: Bearer $access_token" \
                  -X POST $curl_options $curl_silent_options \
-                 $API_SERVICE/$BLOG_ID/posts/$post_id/$1
+                 $API_SERVICE/$BLOG_ID/posts/$resource_id/$1
         else
             echo Usage: ${FUNCNAME[0]} publish \| revert >&2
             exit 2
@@ -106,16 +107,17 @@ bp_transition_post_status() {
     fi
 }
 
-## @fn bp_partially_update_post()
-## @brief Partially update a post.
+## @fn bp_partially_update_resource()
+## @brief Partially update a resource.
 ## @details Multiple pairs of a property and a value are allowed.  The
-## variable \c resource can have the value \c posts or \c pages.
+## variable \c resource can have the value \c posts (default) or \c
+## pages.
 ## @param $property A property without quotes.
 ## @param $value A value.
 ## @return A response body in JSON.
-bp_partially_update_post() {
-    if [ -z "$post_id" ]; then
-        echo post_id is zero >&2
+bp_partially_update_resource() {
+    if [ -z "$resource_id" ]; then
+        echo resource_id is zero >&2
         exit 1
     else
         if [ $# != 0 -a $(($# % 2)) == 0 ]; then
@@ -134,7 +136,7 @@ bp_partially_update_post() {
                  -H "Authorization: Bearer $access_token" \
                  -H 'Content-Type: application/json; charset=utf-8' \
                  -X PATCH $curl_options $curl_silent_options \
-                 $API_SERVICE/$BLOG_ID/${resource:=posts}/$post_id
+                 $API_SERVICE/$BLOG_ID/${resource_type:=posts}/$resource_id
         else
             echo Usage: ${FUNCNAME[0]} PROPERTY VALUE [PROPERTY VALUE ...] >&2
             exit 2
@@ -154,7 +156,7 @@ bp_test_function() {
     if [ ! -d "$log_root" ]; then
         mkdir -v "$log_root" || exit
     fi
-    log="$log_root/$$-$(printf %04d $BASH_LINENO)-${1##*/}$bp_test_function_suffix"
+    log="$log_root/$$-${resource_type:=posts}-$(printf %04d $BASH_LINENO)-${1##*/}$bp_test_function_suffix"
     "$@" >"$log"
     local exit_status=$?
     if [ ! -s "$log" ]; then
