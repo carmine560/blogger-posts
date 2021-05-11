@@ -58,7 +58,7 @@ test-blogger-posts.sh
 ```
 
 ![A screenshot of GNOME Terminal where test-blogger-posts.sh was
-executed.](https://dl.dropboxusercontent.com/s/p37z2rfjy0ecvv4/20210511T185256.png)
+executed.](https://dl.dropboxusercontent.com/s/uoi6z8p2abz1024/20210511T201409.png)
 
 This script creates the directory
 `$HOME/Downloads/test-blogger-posts.sh` if it does not exist and saves
@@ -66,9 +66,10 @@ response bodies in there.
 
 ## Usage ##
 
-The functions of the script `blogger-posts.sh` require the variable
-`resource_id` to be assigned a value except for the functions
-`bp_list_resources` and `bp_add_resource`.
+The functions of the script `blogger-posts.sh` use the value `posts`
+(default) or `pages` of the variable `resource_type`.  Also, the
+variable `resource_id` needs to be assigned a value except for the
+functions `bp_list_resources` and `bp_add_resource`.
 
 The function `bp_list_resources` has optional parameters as an
 argument:

@@ -88,11 +88,13 @@ bp_delete_resource() {
     fi
 }
 
-## @fn bp_transition_post_status()
+## @fn bp_transition_resource_status()
 ## @brief Transition the post status.
+## @details The variable \c resource can have the value \c posts
+## (default) or \c pages.
 ## @param $status \c publish or \c revert.
 ## @return A response body in JSON.
-bp_transition_post_status() {
+bp_transition_resource_status() {
     if [ -z "$resource_id" ]; then
         echo resource_id is zero >&2
         exit 1
@@ -100,7 +102,7 @@ bp_transition_post_status() {
         if [ "$1" == publish -o "$1" == revert ]; then
             curl -H "Authorization: Bearer $access_token" \
                  -X POST $curl_options $curl_silent_options \
-                 $API_SERVICE/$BLOG_ID/posts/$resource_id/$1
+                 $API_SERVICE/$BLOG_ID/${resource_type:=posts}/$resource_id/$1
         else
             echo Usage: ${FUNCNAME[0]} publish \| revert >&2
             exit 2
