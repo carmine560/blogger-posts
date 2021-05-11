@@ -22,8 +22,7 @@ sudo apt install jq
 ```
 
 Also, to obtain an access token from the Google Authorization Server,
-I use
-[google-oauth-token](https://github.com/carmine560/google-oauth-token).
+I use [google-oauth-token](google-oauth-token.md).
 
 ## Installation ##
 
