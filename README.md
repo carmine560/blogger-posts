@@ -58,7 +58,7 @@ test-blogger-posts.sh
 ```
 
 ![A screenshot of GNOME Terminal where test-blogger-posts.sh was
-executed.](https://dl.dropboxusercontent.com/s/yjqx11ynk5yv0ug/20210511T173128.png)
+executed.](https://dl.dropboxusercontent.com/s/3v7z7voykl23pmu/20210511T180202.png)
 
 This script creates the directory
 `$HOME/Downloads/test-blogger-posts.sh` if it does not exist and saves
