@@ -58,7 +58,7 @@ test-blogger-posts.sh
 ```
 
 ![A screenshot of GNOME Terminal where test-blogger-posts.sh was
-executed.](https://dl.dropboxusercontent.com/s/3v7z7voykl23pmu/20210511T180202.png)
+executed.](https://dl.dropboxusercontent.com/s/p37z2rfjy0ecvv4/20210511T185256.png)
 
 This script creates the directory
 `$HOME/Downloads/test-blogger-posts.sh` if it does not exist and saves
@@ -68,8 +68,14 @@ response bodies in there.
 
 The functions of the script `blogger-posts.sh` require the variable
 `resource_id` to be assigned a value except for the functions
-`bp_list_resources` and `bp_add_resource`.  Also, the following
-functions have arguments.
+`bp_list_resources` and `bp_add_resource`.
+
+The function `bp_list_resources` has optional parameters as an
+argument:
+
+``` shell
+bp_list_resources status=live
+```
 
 The functions `bp_add_resource` and `bp_partially_update_resource`
 have multiple pairs of a property and a value as arguments:
@@ -78,7 +84,7 @@ have multiple pairs of a property and a value as arguments:
 bp_add_resource title '"Resource Title"' content '"<p>A paragraph.</p>"'
 ```
 
-The function `bp_transition_post_status` have the status `publish` or
+The function `bp_transition_post_status` has the status `publish` or
 `revert` as an argument:
 
 ``` shell
