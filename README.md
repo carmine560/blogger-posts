@@ -57,38 +57,61 @@ Then:
 test-blogger-posts.sh
 ```
 
-![A screenshot of GNOME Terminal where test-blogger-posts.sh was
-executed.](https://dl.dropboxusercontent.com/s/uoi6z8p2abz1024/20210511T201409.png)
-
 This script creates the directory
 `$HOME/Downloads/test-blogger-posts.sh` if it does not exist and saves
 response bodies in there.
 
+![A screenshot of GNOME Terminal where test-blogger-posts.sh was
+executed.](https://dl.dropboxusercontent.com/s/uoi6z8p2abz1024/20210511T201409.png)
+
 ## Usage ##
 
 The functions of the script `blogger-posts.sh` use the value `posts`
-(default) or `pages` of the variable `resource_type`.  Also, the
-variable `resource_id` needs to be assigned a value except for the
-functions `bp_list_resources` and `bp_add_resource`.
+(default) or `pages` of the variable `resource_type`.
 
-The function `bp_list_resources` has optional parameters as an
-argument:
+To list resources, pass optional parameters as an argument if
+necessary:
 
 ``` shell
 bp_list_resources status=live
 ```
 
-The functions `bp_add_resource` and `bp_partially_update_resource`
-have multiple pairs of a property and a value as arguments:
+To retrieve a resource, assign a value to the variable `resource_id`
+in advance:
+
+``` shell
+resource_id=0000000000000000000
+bp_get_resource
+```
+
+To add a resource, pass multiple property-value pairs as arguments:
 
 ``` shell
 bp_add_resource title '"Resource Title"' content '"<p>A paragraph.</p>"'
 ```
 
-The function `bp_transition_post_status` has the status `publish` or
-`revert` as an argument:
+To delete a resource, assign a value to the variable `resource_id`
+in advance:
 
 ``` shell
+resource_id=0000000000000000000
+bp_delete_resource
+```
+
+To update a resource, assign a value to the variable `resource_id` in
+advance, then pass multiple property-value pairs as arguments:
+
+``` shell
+resource_id=0000000000000000000
+bp_partially_update_resource content '"<p>An updated paragraph.</p>"'
+```
+
+To transition the resource status, assign a value to the variable
+`resource_id` in advance, then pass the status `publish` or `revert`
+as an argument:
+
+``` shell
+resource_id=0000000000000000000
 bp_transition_post_status publish
 ```
 

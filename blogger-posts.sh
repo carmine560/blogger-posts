@@ -45,8 +45,7 @@ bp_get_resource() {
 ## @fn bp_add_resource()
 ## @brief Add a resource.
 ## @details The variable \c resource_type can have the value \c posts
-## (default) or \c pages.  Multiple pairs of a property and a value
-## are allowed.
+## (default) or \c pages.  Multiple property-value pairs are allowed.
 ## @param $property A property without quotes.
 ## @param $value A value.
 ## @return A response body in JSON.
@@ -90,35 +89,11 @@ bp_delete_resource() {
     fi
 }
 
-## @fn bp_transition_resource_status()
-## @brief Transition the resource_type status.
-## @details The variable \c resource_type can have the value \c posts
-## (default) or \c pages.  The variable \c resource_id needs to be
-## assigned a value.
-## @param $status \c publish or \c revert.
-## @return A response body in JSON.
-bp_transition_resource_status() {
-    if [ -z "$resource_id" ]; then
-        echo resource_id is zero >&2
-        exit 1
-    else
-        if [ "$1" == publish -o "$1" == revert ]; then
-            curl -H "Authorization: Bearer $access_token" \
-                 -X POST $curl_options $curl_silent_options \
-                 $API_SERVICE/$BLOG_ID/${resource_type:=posts}/$resource_id/$1
-        else
-            echo Usage: ${FUNCNAME[0]} publish \| revert >&2
-            exit 2
-        fi
-    fi
-}
-
 ## @fn bp_partially_update_resource()
 ## @brief Partially update a resource.
 ## @details The variable \c resource_type can have the value \c posts
 ## (default) or \c pages.  The variable \c resource_id needs to be
-## assigned a value.  Multiple pairs of a property and a value are
-## allowed.
+## assigned a value.  Multiple property-value pairs are allowed.
 ## @param $property A property without quotes.
 ## @param $value A value.
 ## @return A response body in JSON.
@@ -146,6 +121,29 @@ bp_partially_update_resource() {
                  $API_SERVICE/$BLOG_ID/${resource_type:=posts}/$resource_id
         else
             echo Usage: ${FUNCNAME[0]} PROPERTY VALUE [PROPERTY VALUE ...] >&2
+            exit 2
+        fi
+    fi
+}
+
+## @fn bp_transition_resource_status()
+## @brief Transition the resource status.
+## @details The variable \c resource_type can have the value \c posts
+## (default) or \c pages.  The variable \c resource_id needs to be
+## assigned a value.
+## @param $status \c publish or \c revert.
+## @return A response body in JSON.
+bp_transition_resource_status() {
+    if [ -z "$resource_id" ]; then
+        echo resource_id is zero >&2
+        exit 1
+    else
+        if [ "$1" == publish -o "$1" == revert ]; then
+            curl -H "Authorization: Bearer $access_token" \
+                 -X POST $curl_options $curl_silent_options \
+                 $API_SERVICE/$BLOG_ID/${resource_type:=posts}/$resource_id/$1
+        else
+            echo Usage: ${FUNCNAME[0]} publish \| revert >&2
             exit 2
         fi
     fi
