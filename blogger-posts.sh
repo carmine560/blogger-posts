@@ -143,7 +143,7 @@ bp_partially_update_resource() {
 ## @details The variable \c resource_type can have the value \c posts
 ## (default) or \c pages.  The variable \c resource_id needs to be
 ## assigned a value.
-## @param $status \c publish or \c revert.
+## @param $status The status \c publish or \c revert.
 ## @return A response body in JSON.
 bp_transition_resource_status() {
     if bp_check_variables resource_id &&
