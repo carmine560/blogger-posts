@@ -21,8 +21,8 @@ sudo apt install curl
 sudo apt install jq
 ```
 
-Also, to obtain an access token from the Google Authorization Server,
-I use [google-oauth-token](google-oauth-token.md).
+Also, use [google-oauth-token](google-oauth-token.md) to obtain an
+access token from the Google Authorization Server.
 
 ## Installation ##
 
