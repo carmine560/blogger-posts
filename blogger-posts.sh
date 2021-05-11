@@ -14,16 +14,13 @@ access_token=$($get_access_token) || exit
 ## @details Multiple variables are allowed.
 ## @param $variable A variable.
 bp_check_variables() {
-    if [ -z "$access_token" ]; then
-        echo access_token is zero >&2
-        exit 1
-    elif [ -z "$API_SERVICE" ]; then
-        echo API_SERVICE is zero >&2
-        exit 1
-    elif [ -z "$BLOG_ID" ]; then
-        echo BLOG_ID is zero >&2
-        exit 1
-    fi
+    local variable
+    for variable in access_token API_SERVICE BLOG_ID; do
+        if [ -z $(eval echo \$$variable) ]; then
+            echo $variable is zero >&2
+            exit 1
+        fi
+    done
     while [ $# -gt 0 ]; do
         if [ -z $(eval echo \$$1) ]; then
             echo $1 is zero >&2
