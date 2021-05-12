@@ -51,7 +51,7 @@ get_access_token='google-oauth-token.sh -a'
 readonly BLOG_ID=0000000000000000000
 ```
 
-And then:
+Then:
 
 ``` shell
 test-blogger-posts.sh
@@ -77,7 +77,7 @@ bp_list_resources status=live
 ```
 
 To retrieve a resource, assign a value to the variable `resource_id`
-in advance, and then:
+in advance, then:
 
 ``` shell
 bp_get_resource
@@ -89,23 +89,23 @@ To add a resource, pass multiple property-value pairs as arguments:
 bp_add_resource title '"Resource Title"' content '"<p>A paragraph.</p>"'
 ```
 
-To delete a resource, assign a value to the variable `resource_id`
-in advance, and then:
+To delete a resource, assign a value to the variable `resource_id` in
+advance, then:
 
 ``` shell
 bp_delete_resource
 ```
 
 To update a resource, assign a value to the variable `resource_id` in
-advance, and then pass multiple property-value pairs as arguments:
+advance, then pass multiple property-value pairs as arguments:
 
 ``` shell
 bp_partially_update_resource content '"<p>An updated paragraph.</p>"'
 ```
 
 To transition the resource status, assign a value to the variable
-`resource_id` in advance, and then pass the status `publish` or
-`revert` as an argument:
+`resource_id` in advance, then pass the status `publish` or `revert`
+as an argument:
 
 ``` shell
 bp_transition_post_status publish
