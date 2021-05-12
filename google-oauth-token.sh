@@ -3,9 +3,8 @@
 ## @file
 ## @brief Obtain an access token from the Google Authorization Server.
 ## @details Support the OAuth 2.0 authorization sequence and obtain an
-## access token from the Google Authorization Server.  See the
-## following post for more details:
-## https://carmine560.blogspot.com/2021/04/bash-scripting-to-obtain-access-token.html
+## access token from the Google Authorization Server.  For more
+## details, see: https://github.com/carmine560/blogger-posts
 
 set -o pipefail
 curl_options=-fSs

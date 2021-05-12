@@ -1,5 +1,10 @@
 #!/bin/bash
 
+## @file
+## @brief Test the functions of `blogger-posts.sh`.
+## @details For more details, see:
+## https://github.com/carmine560/blogger-posts
+
 set -o pipefail
 
 # Set the configurable variables.

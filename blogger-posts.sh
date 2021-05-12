@@ -1,6 +1,8 @@
 ## @file
 ## @brief Add, update, or delete a post or page through the Blogger
 ## API.
+## @details For more details, see:
+## https://github.com/carmine560/blogger-posts
 
 curl_options=-fSs
 readonly API_SERVICE=https://www.googleapis.com/blogger/v3/blogs
