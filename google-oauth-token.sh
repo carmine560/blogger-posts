@@ -16,7 +16,7 @@ readonly CLIENT_SECRET=CLIENT_SECRET
 authorization_code=AUTHORIZATION_CODE
 access_token=
 refresh_token='
-. encrypted_configuration.sh initialize || exit
+. encrypted-configuration.sh initialize || exit
 
 ## @fn got_return_authorization_url()
 ## @brief Return an authorization URL for an authorization code.
