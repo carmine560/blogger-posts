@@ -2,6 +2,8 @@
 
 <!-- Bash script that adds, updates, or deletes post or page through Blogger API -->
 
+<!-- bash blogger-api curl jq -->
+
 A Bash script that adds, updates, or deletes a post or page through
 the [Blogger API](https://developers.google.com/blogger) v3.0.
 
