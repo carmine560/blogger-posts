@@ -1,11 +1,11 @@
 # blogger-posts #
 
-<!-- Bash script that adds, updates, or deletes post or page through Blogger API -->
+<!-- Bash script that adds, updates, or deletes Blogger posts or pages through API -->
 
 <!-- bash blogger-api curl jq -->
 
-A Bash script that adds, updates, or deletes a post or page through
-the [Blogger API](https://developers.google.com/blogger) v3.0.
+A Bash script that adds, updates, or deletes Blogger posts or pages
+through the [API](https://developers.google.com/blogger) v3.0.
 
 ## Prerequisites ##
 
@@ -120,6 +120,6 @@ bp_transition_post_status publish
 
 ## Link ##
 
-  * [Bash Scripting to Update Posts for Local Changes through Blogger
+  * [Bash Scripting to Update Blogger Posts for Local Changes through
     API](https://carmine560.blogspot.com/2021/04/bash-scripting-to-update-posts-through.html):
     a blog post with a practical example using this script.
