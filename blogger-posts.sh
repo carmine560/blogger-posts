@@ -9,7 +9,8 @@ readonly API_SERVICE=https://www.googleapis.com/blogger/v3/blogs
 bp_test_function_suffix=.json
 
 # Obtain an access token.
-access_token=$($get_access_token) || exit
+ACCESS_TOKEN=$($get_access_token) || exit
+readonly ACCESS_TOKEN
 
 ## @fn bp_check_variables()
 ## @brief Check if the values of variables is zero.
@@ -17,7 +18,7 @@ access_token=$($get_access_token) || exit
 ## @param $variable A variable.
 bp_check_variables() {
     local variable
-    for variable in access_token API_SERVICE BLOG_ID; do
+    for variable in ACCESS_TOKEN API_SERVICE BLOG_ID; do
         if [ -z $(eval echo \$$variable) ]; then
             echo $variable is zero >&2
             exit 1
@@ -40,7 +41,7 @@ bp_check_variables() {
 ## @return A response body in JSON.
 bp_list_resources() {
     if bp_check_variables; then
-        curl -H "Authorization: Bearer $access_token" \
+        curl -H "Authorization: Bearer $ACCESS_TOKEN" \
              -X GET $curl_options $curl_silent_options \
              $API_SERVICE/$BLOG_ID/${resource_type:=posts}?$1
     fi
@@ -54,7 +55,7 @@ bp_list_resources() {
 ## @return A response body in JSON.
 bp_get_resource() {
     if bp_check_variables resource_id; then
-        curl -H "Authorization: Bearer $access_token" \
+        curl -H "Authorization: Bearer $ACCESS_TOKEN" \
              -X GET $curl_options $curl_silent_options \
              $API_SERVICE/$BLOG_ID/${resource_type:=posts}/$resource_id
     fi
@@ -81,7 +82,7 @@ bp_add_resource() {
             ((++index))
         done
         curl -d "{$pairs}" \
-             -H "Authorization: Bearer $access_token" \
+             -H "Authorization: Bearer $ACCESS_TOKEN" \
              -H 'Content-Type: application/json; charset=utf-8' \
              -X POST $curl_options \
              $API_SERVICE/$BLOG_ID/${resource_type:=posts}?$bp_add_resource_parameters
@@ -98,7 +99,7 @@ bp_add_resource() {
 ## assigned a value.
 bp_delete_resource() {
     if bp_check_variables resource_id; then
-        curl -H "Authorization: Bearer $access_token" \
+        curl -H "Authorization: Bearer $ACCESS_TOKEN" \
              -X DELETE $curl_options $curl_silent_options \
              $API_SERVICE/$BLOG_ID/${resource_type:=posts}/$resource_id
     fi
@@ -127,7 +128,7 @@ bp_partially_update_resource() {
             ((++index))
         done
         curl -d "{$pairs}" \
-             -H "Authorization: Bearer $access_token" \
+             -H "Authorization: Bearer $ACCESS_TOKEN" \
              -H 'Content-Type: application/json; charset=utf-8' \
              -X PATCH $curl_options $curl_silent_options \
              $API_SERVICE/$BLOG_ID/${resource_type:=posts}/$resource_id
@@ -147,7 +148,7 @@ bp_partially_update_resource() {
 bp_transition_resource_status() {
     if bp_check_variables resource_id &&
             [ "$1" == publish -o "$1" == revert ]; then
-        curl -H "Authorization: Bearer $access_token" \
+        curl -H "Authorization: Bearer $ACCESS_TOKEN" \
              -X POST $curl_options $curl_silent_options \
              $API_SERVICE/$BLOG_ID/${resource_type:=posts}/$resource_id/$1
     else
