@@ -1,16 +1,17 @@
 # blogger-posts #
 
-<!-- Bash script that adds, updates, or deletes Blogger posts or pages through API -->
+<!-- Bash script that adds, updates, or deletes Blogger posts or pages
+through API -->
 
 <!-- bash blogger-api curl jq -->
 
-A Bash script that adds, updates, or deletes Blogger posts or pages
+`blogger-posts.sh` adds, updates, or deletes Blogger posts or pages
 through the [API](https://developers.google.com/blogger) v3.0.
 
 ## Prerequisites ##
 
-This script has been tested for Blogger on Debian bullseye on WSL 1
-and uses the following packages:
+This script has been tested for Blogger on Debian on WSL 2 and uses
+the following packages:
 
   * [curl](https://curl.se/) for HTTP requests
   * The testing script uses [jq](https://stedolan.github.io/jq/) to
@@ -26,21 +27,6 @@ sudo apt install jq
 Also, I use
 [google-oauth-token](https://github.com/carmine560/google-oauth-token)
 to obtain an access token from the Google Authorization Server.
-
-## Installation ##
-
-Make sure that Bash can find these scripts in the directories of the
-`PATH`.  For example:
-
-``` shell
-PATH=$HOME/path/to/blogger-posts:$PATH
-```
-
-or
-
-``` shell
-cp -i *.sh ~/.local/bin
-```
 
 ## Testing ##
 
@@ -64,8 +50,8 @@ This script creates the directory
 `$HOME/Downloads/test-blogger-posts.sh` if it does not exist and saves
 response bodies in there.
 
-![A screenshot of GNOME Terminal where test-blogger-posts.sh was
-executed.](https://dl.dropboxusercontent.com/s/uoi6z8p2abz1024/20210511T201409.png)
+![A screenshot of Windows Terminal where test-blogger-posts.sh was
+executed.](https://dl.dropboxusercontent.com/s/3ds7zyu4hfa87dh/20230210T193523.png)
 
 ## Usage ##
 
