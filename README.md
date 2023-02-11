@@ -46,12 +46,11 @@ Then:
 test-blogger-posts.sh
 ```
 
-This script creates the directory
-`$HOME/Downloads/test-blogger-posts.sh` if it does not exist and saves
-response bodies in there.
+This script creates the directory `$HOME/Downloads/test-blogger-posts`
+if it does not exist and saves response bodies in there.
 
 ![A screenshot of Windows Terminal where test-blogger-posts.sh was
-executed.](https://dl.dropboxusercontent.com/s/3ds7zyu4hfa87dh/20230210T193523.png)
+executed.](https://dl.dropboxusercontent.com/s/ebr7pmdgy0w42zq/20230211T140839.png)
 
 ## Usage ##
 

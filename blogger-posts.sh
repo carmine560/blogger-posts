@@ -161,10 +161,11 @@ bp_transition_resource_status() {
 ## @brief Test a function.
 ## @param $parameters A function and parameters.
 bp_test_function() {
+    base=$(basename "$0" .sh)
     if [ -d "$HOME/Downloads" ]; then
-        local log_root="$HOME/Downloads/${0##*/}"
+        local log_root="$HOME/Downloads/$base"
     else
-        local log_root="$HOME/${0##*/}"
+        local log_root="$HOME/$base"
     fi
     if [ ! -d "$log_root" ]; then
         mkdir -v "$log_root" || exit
