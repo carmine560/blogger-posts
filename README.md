@@ -10,8 +10,8 @@ through the [API](https://developers.google.com/blogger) v3.0.
 
 ## Prerequisites ##
 
-This script has been tested for Blogger on Debian on WSL 2 and uses
-the following packages:
+This script has been tested for Blogger on Debian on WSL and uses the
+following packages:
 
   * [curl](https://curl.se/) for HTTP requests
   * The testing script uses [jq](https://stedolan.github.io/jq/) to
