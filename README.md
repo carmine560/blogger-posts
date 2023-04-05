@@ -14,7 +14,7 @@ This script has been tested for Blogger on Debian on WSL and uses the
 following packages:
 
   * [curl](https://curl.se/) for HTTP requests
-  * The testing script uses [jq](https://stedolan.github.io/jq/) to
+  * A testing script uses [jq](https://stedolan.github.io/jq/) to
     filter JSON responses
 
 Install each package as needed.  For example:
@@ -30,10 +30,9 @@ to obtain an access token from the Google Authorization Server.
 
 ## Testing ##
 
-The testing script `test-blogger-posts.sh` will create the
-configuration file `~/.config/test-blogger-posts.cfg` if it does not
-exist.  Replace the values of the following variables in it with
-yours.  For example:
+The testing script `test-blogger-posts.sh` will create a configuration
+file `~/.config/test-blogger-posts.cfg` if it does not exist.  Replace
+the values of the following variables in it with yours.  For example:
 
 ``` shell
 get_access_token='google-oauth-token.sh -a'
@@ -46,57 +45,51 @@ Then:
 test-blogger-posts.sh
 ```
 
-This script creates the directory `$HOME/Downloads/test-blogger-posts`
+This script creates a directory `$HOME/Downloads/test-blogger-posts`
 if it does not exist and saves response bodies in there.
 
 ![A screenshot of Windows Terminal where test-blogger-posts.sh was
-executed.](https://dl.dropboxusercontent.com/s/ebr7pmdgy0w42zq/20230211T140839.png)
+executed.](https://dl.dropboxusercontent.com/s/8q5z5fa0xn3ytfq/20230405T155104.png)
 
 ## Usage ##
 
-The functions of the script `blogger-posts.sh` use the value `posts`
-(default) or `pages` of the variable `resource_type`.
-
-To list resources, pass optional parameters as an argument if
-necessary:
+To list resources (`posts` or `pages`), pass optional parameters as an
+argument if necessary:
 
 ``` shell
-bp_list_resources status=live
+bp_list_resources posts status=live
 ```
 
-To retrieve a resource, assign a value to the variable `resource_id`
-in advance, then:
+To retrieve a resource:
 
 ``` shell
-bp_get_resource
+bp_get_resource posts RESOURCE_ID
 ```
 
 To add a resource, pass multiple property-value pairs as arguments:
 
 ``` shell
-bp_add_resource title '"Resource Title"' content '"<p>A paragraph.</p>"'
+bp_add_resource posts title '"Resource Title"' content '"<p>A paragraph.</p>"'
 ```
 
-To delete a resource, assign a value to the variable `resource_id` in
-advance, then:
+To delete a resource:
 
 ``` shell
-bp_delete_resource
+bp_delete_resource posts RESOURCE_ID
 ```
 
-To update a resource, assign a value to the variable `resource_id` in
-advance, then pass multiple property-value pairs as arguments:
+To update a resource, pass multiple property-value pairs as arguments:
 
 ``` shell
-bp_partially_update_resource content '"<p>An updated paragraph.</p>"'
+bp_partially_update_resource posts RESOURCE_ID \
+                             content '"<p>An updated paragraph.</p>"'
 ```
 
-To transition the resource status, assign a value to the variable
-`resource_id` in advance, then pass the status `publish` or `revert`
-as an argument:
+To transition the resource status, pass the status `publish` or
+`revert` as an argument:
 
 ``` shell
-bp_transition_post_status publish
+bp_transition_post_status posts RESOURCE_ID publish
 ```
 
 ## License ##
