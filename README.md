@@ -1,12 +1,13 @@
 # blogger-posts #
 
-<!-- Bash script that adds, updates, or deletes Blogger posts or pages
+<!-- Bash script that adds, updates, or deletes Blogger post or page
 through API -->
 
 <!-- bash blogger-api curl jq -->
 
-`blogger-posts.sh` adds, updates, or deletes Blogger posts or pages
-through the [API](https://developers.google.com/blogger) v3.0.
+A `blogger-posts.sh` Bash script adds, updates, or deletes Blogger
+posts or pages through the
+[API](https://developers.google.com/blogger) v3.0.
 
 ## Prerequisites ##
 
@@ -30,9 +31,10 @@ to obtain an access token from the Google Authorization Server.
 
 ## Testing ##
 
-The testing script `test-blogger-posts.sh` will create a configuration
-file `~/.config/test-blogger-posts.cfg` if it does not exist.  Replace
-the values of the following variables in it with yours.  For example:
+The `test-blogger-posts.sh` testing script will create a
+`~/.config/test-blogger-posts.cfg` configuration file if it does not
+exist.  Replace the values of the following variables in it with
+yours.  For example:
 
 ``` shell
 get_access_token='google-oauth-token.sh -a'
@@ -45,16 +47,13 @@ Then:
 test-blogger-posts.sh
 ```
 
-This script creates a directory `$HOME/Downloads/test-blogger-posts`
+This script creates a `$HOME/Downloads/test-blogger-posts` directory
 if it does not exist and saves response bodies in there.
-
-![A screenshot of Windows Terminal where test-blogger-posts.sh was
-executed.](https://dl.dropboxusercontent.com/s/8q5z5fa0xn3ytfq/20230405T155104.png)
 
 ## Usage ##
 
-To list resources (`posts` or `pages`), pass optional parameters as an
-argument if necessary:
+To list resources that are `posts` or `pages`, pass an optional
+parameter as an argument if necessary:
 
 ``` shell
 bp_list_resources posts status=live
