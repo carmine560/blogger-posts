@@ -99,4 +99,4 @@ bp_transition_post_status posts RESOURCE_ID publish
 
   * [*Bash Scripting to Update Blogger Posts for Local Changes through
     API*](https://carmine560.blogspot.com/2021/04/bash-scripting-to-update-posts-through.html):
-    a blog post with a practical example using this script.
+    a blog post with a practical example using this script
