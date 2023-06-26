@@ -22,10 +22,6 @@ sudo apt install curl
 sudo apt install jq
 ```
 
-In addition, I use
-[google-oauth-token](https://github.com/carmine560/google-oauth-token) to
-obtain an access token from the Google Authorization Server.
-
 ## Testing ##
 
 The `test-blogger-posts.sh` testing script will create a
