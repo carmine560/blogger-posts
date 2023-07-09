@@ -8,9 +8,9 @@
 set -o pipefail
 
 # Set the configurable variables.
-default_configuration='get_access_token=GET_ACCESS_TOKEN
+default_configuration="get_access_token='google-oauth-token.sh -a'
 readonly BLOG_ID=BLOG_ID
-bp_add_resource_parameters='
+bp_add_resource_parameters="
 . configuration.sh initialize || exit
 
 # Load functions to add, update, or delete a resource through the

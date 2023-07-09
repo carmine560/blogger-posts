@@ -12,24 +12,57 @@ This script has been tested for Blogger on Debian on WSL and uses the following
 packages:
 
   * [curl](https://curl.se/) for HTTP requests
-  * A testing script uses [jq](https://stedolan.github.io/jq/) to filter JSON
-    responses
+  * [jq](https://stedolan.github.io/jq/) to filter JSON responses
+  * [GnuPG](https://gnupg.org/index.html) to encrypt the configuration file
 
 Install each package as needed.  For example:
 
 ``` shell
 sudo apt install curl
 sudo apt install jq
+sudo apt install gpg
 ```
 
-## Testing ##
+## `google-oauth-token.sh` Usage ##
 
-The `test-blogger-posts.sh` testing script will create a
+The `google-oauth-token.sh` authorization script will create and encrypt the
+`~/.config/google-oauth-token.cfg.gpg` configuration file if it does not exist.
+It assumes that the default key pair of GnuPG is your OpenPGP key pair.
+
+### OAuth 2.0 Authorization Sequence ###
+
+ 1. Create client credentials by selecting the “Desktop app” application type
+    in the [Google API Console](https://console.developers.google.com/).
+ 2. Replace the values of the following variables with yours in the
+    configuration file:
+    * `SCOPE`
+    * `CLIENT_ID`
+    * `CLIENT_SECRET`
+ 3. Execute `google-oauth-token.sh -C`, and open the URL in your browser.  Then
+    replace the value of the `authorization_code` variable in the configuration
+    file with the value of the `code` of a returned URL in the address bar.
+ 4. Execute `google-oauth-token.sh -T` to store tokens in the configuration
+    file.
+
+After completing steps 1-4 above, `google-oauth-token.sh -a` refreshes and
+returns the access token if it is expired when called from another script using
+the Google API.
+
+### Options ###
+
+  * `-C`: return an authorization URL for an authorization code
+  * `-T`: store an access token and a refresh token
+  * `-r`: refresh the access token
+  * `-i`: display the status of the access token in JSON if it is valid
+  * `-a`: refresh the access token if it is expired and return it
+
+## `test-blogger-posts.sh` Usage ##
+
+The `test-blogger-posts.sh` testing script will create the
 `~/.config/test-blogger-posts.cfg` configuration file if it does not exist.
-Replace the values of the following variables in it with yours.  For example:
+Replace the value of the following variable in it with yours:
 
 ``` shell
-get_access_token='google-oauth-token.sh -a'
 readonly BLOG_ID=0000000000000000000
 ```
 
@@ -39,10 +72,10 @@ Then:
 test-blogger-posts.sh
 ```
 
-This script creates a `$HOME/Downloads/test-blogger-posts` directory if it does
-not exist and saves response bodies in there.
+This script creates the `$HOME/Downloads/test-blogger-posts` directory if it
+does not exist and saves response bodies in there.
 
-## Usage ##
+## `blogger-posts.sh` Usage ##
 
 To list resources that are `posts` or `pages`, pass an optional parameter as an
 argument if necessary:
@@ -87,8 +120,11 @@ bp_transition_post_status posts RESOURCE_ID publish
 
 [MIT](LICENSE.md)
 
-## Link ##
+## Links ##
 
+  * [*Bash Scripting to Obtain Access Token from Google Authorization
+    Server*](https://carmine560.blogspot.com/2021/04/bash-scripting-to-obtain-access-token.html):
+    a blog post for Google OAuth 2.0 authorization
   * [*Bash Scripting to Update Blogger Posts for Local Changes through
     API*](https://carmine560.blogspot.com/2021/04/bash-scripting-to-update-posts-through.html):
     a blog post with a practical example using this script
