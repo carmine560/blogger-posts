@@ -12,7 +12,7 @@ This script has been tested for Blogger on Debian on WSL and uses the following
 packages:
 
   * [curl](https://curl.se/) for HTTP requests
-  * [jq](https://stedolan.github.io/jq/) to filter JSON responses
+  * [jq](https://jqlang.github.io/jq/) to filter JSON responses
   * [GnuPG](https://gnupg.org/index.html) to encrypt the configuration file
 
 Install each package as needed.  For example:
@@ -25,9 +25,11 @@ sudo apt install gpg
 
 ## `google-oauth-token.sh` Usage ##
 
-The `google-oauth-token.sh` authorization script will create and encrypt the
-`~/.config/google-oauth-token.cfg.gpg` configuration file if it does not exist.
-It assumes that the default key pair of GnuPG is your OpenPGP key pair.
+The `google-oauth-token.sh`
+[authorization](https://developers.google.com/identity/protocols/oauth2) script
+will create and encrypt the `~/.config/google-oauth-token.cfg.gpg`
+configuration file if it does not exist.  It assumes that the default key pair
+of GnuPG is your OpenPGP key pair.
 
 ### OAuth 2.0 Authorization Sequence ###
 
@@ -63,7 +65,7 @@ The `test-blogger-posts.sh` testing script will create the
 Replace the value of the following variable in it with yours:
 
 ``` shell
-readonly BLOG_ID=0000000000000000000
+readonly BLOG_ID=BLOG_ID
 ```
 
 Then:
@@ -109,8 +111,8 @@ bp_partially_update_resource posts RESOURCE_ID \
                              content '"<p>An updated paragraph.</p>"'
 ```
 
-To transition the resource status, pass the status `publish` or
-`revert` as an argument:
+To transition the resource status, pass the status `publish` or `revert` as an
+argument:
 
 ``` shell
 bp_transition_post_status posts RESOURCE_ID publish
