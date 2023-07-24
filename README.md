@@ -79,7 +79,8 @@ does not exist and saves response bodies in there.
 
 ## `blogger-posts.sh` Usage ##
 
-To list resources that are `posts` or `pages`, pass an optional parameter as an
+The `blogger-posts.sh` script is a collection of the following functions.  To
+list resources that are `posts` or `pages`, pass an optional parameter as an
 argument if necessary:
 
 ``` shell
