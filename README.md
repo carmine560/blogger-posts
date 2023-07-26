@@ -62,13 +62,7 @@ the Google API.
 
 The `test-blogger-posts.sh` testing script will create the
 `~/.config/test-blogger-posts.cfg` configuration file if it does not exist.
-Replace the value of the following variable in it with yours:
-
-``` shell
-readonly BLOG_ID=BLOG_ID
-```
-
-Then:
+Replace the value of the `BLOG_ID` variable in it with yours.  Then:
 
 ``` shell
 test-blogger-posts.sh
