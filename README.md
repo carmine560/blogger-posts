@@ -40,9 +40,10 @@ of GnuPG is your OpenPGP key pair.
     * `SCOPE`
     * `CLIENT_ID`
     * `CLIENT_SECRET`
- 3. Execute `google-oauth-token.sh -C`, and open the URL in your browser.  Then
-    replace the value of the `authorization_code` variable in the configuration
-    file with the value of the `code` of a returned URL in the address bar.
+ 3. Execute `google-oauth-token.sh -C`, and open the URL in your browser.
+    Then, replace the value of the `authorization_code` variable in the
+    configuration file with the value of the `code` of a returned URL in the
+    address bar.
  4. Execute `google-oauth-token.sh -T` to store tokens in the configuration
     file.
 
