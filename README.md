@@ -8,8 +8,8 @@ pages through the [API](https://developers.google.com/blogger) v3.0.
 
 ## Prerequisites ##
 
-This script has been tested for Blogger on Debian on WSL and uses the following
-packages:
+`blogger-posts.sh` has been tested for Blogger on Debian on WSL and uses the
+following packages:
 
   * [curl](https://curl.se/) for HTTP requests
   * [jq](https://jqlang.github.io/jq/) to filter JSON responses
@@ -69,8 +69,8 @@ Replace the value of the `BLOG_ID` variable in it with yours.  Then:
 test-blogger-posts.sh
 ```
 
-This script creates the `$HOME/Downloads/test-blogger-posts` directory if it
-does not exist and saves response bodies in there.
+`blogger-posts.sh` creates the `$HOME/Downloads/test-blogger-posts` directory
+if it does not exist and saves response bodies.
 
 ## `blogger-posts.sh` Usage ##
 
@@ -125,4 +125,4 @@ bp_transition_post_status posts RESOURCE_ID publish
     a blog post for Google OAuth 2.0 authorization
   * [*Bash Scripting to Update Blogger Posts for Local Changes through
     API*](https://carmine560.blogspot.com/2021/04/bash-scripting-to-update-posts-through.html):
-    a blog post with a practical example using this script
+    a blog post with a practical example using `blogger-posts.sh`
