@@ -4,7 +4,12 @@
 ## cfg_initialize_configuration.
 
 if [ -d "$HOME/.config" ]; then
-    readonly CONFIGURATION=$HOME/.config/$(basename "$0" .${0##*.}).cfg
+    configuration_directory=$HOME/.config/$USER
+    if [ ! -d "$configuration_directory" ]; then
+        mkdir -v "$configuration_directory" || exit
+    fi
+    readonly \
+        CONFIGURATION=$configuration_directory/$(basename "$0" .${0##*.}).cfg
 else
     readonly CONFIGURATION=$HOME/.$(basename "$0" .${0##*.}).cfg
 fi
