@@ -1,11 +1,5 @@
 #!/bin/bash
 
-## @file
-## @brief Obtain an access token from the Google Authorization Server.
-## @details Support the OAuth 2.0 authorization sequence and obtain an
-## access token from the Google Authorization Server.  For more
-## details, see: https://github.com/carmine560/blogger-posts
-
 set -o pipefail
 curl_options=-fSs
 readonly TOKEN_ENDPOINT=https://oauth2.googleapis.com/token
@@ -18,15 +12,10 @@ access_token=
 refresh_token='
 . encrypt-configuration.sh initialize || exit
 
-## @fn got_return_authorization_url()
-## @brief Return an authorization URL for an authorization code.
-## @return An authorization URL.
 got_return_authorization_url() {
     echo "https://accounts.google.com/o/oauth2/v2/auth?client_id=$CLIENT_ID&redirect_uri=http://localhost&response_type=code&scope=$SCOPE"
 }
 
-## @fn got_store_tokens()
-## @brief Store an access token and a refresh token.
 got_store_tokens() {
     read access_token refresh_token \
          <<<$(curl -d client_id=$CLIENT_ID \
@@ -47,8 +36,6 @@ got_store_tokens() {
     fi
 }
 
-## @fn got_refresh_access_token()
-## @brief Refresh the access token.
 got_refresh_access_token() {
     access_token=$(curl -d client_id=$CLIENT_ID \
                         -d client_secret=$CLIENT_SECRET \
@@ -59,9 +46,6 @@ got_refresh_access_token() {
     ec_set_value access_token $access_token
 }
 
-## @fn got_display_status()
-## @brief Display the status of the access token.
-## @return The status of the access token in JSON if it is valid.
 got_display_status() {
     curl $curl_options https://www.googleapis.com/oauth2/v1/tokeninfo?access_token=$access_token
 }
@@ -81,7 +65,6 @@ while getopts :CTria OPT; do
             got_display_status
             ;;
         a|+a)
-            # Return the access token.
             if ! got_display_status &>/dev/null; then
                 got_refresh_access_token
             fi

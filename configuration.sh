@@ -1,8 +1,3 @@
-## @file
-## @brief Read and write the plain text configuration file.
-## @param string \c initialize invokes \c
-## cfg_initialize_configuration.
-
 if [ -d "$HOME/.config" ]; then
     configuration_directory=$HOME/.config/$USER
     if [ ! -d "$configuration_directory" ]; then
@@ -14,9 +9,6 @@ else
     readonly CONFIGURATION=$HOME/.$(basename "$0" .${0##*.}).cfg
 fi
 
-## @fn cfg_initialize_configuration()
-## @brief Execute the existing configuration file, or create it.
-## @param $mode The mode of the configuration file.
 cfg_initialize_configuration() {
     if [ -f "$CONFIGURATION" ]; then
         . "$CONFIGURATION" || exit

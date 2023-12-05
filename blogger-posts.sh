@@ -1,9 +1,3 @@
-## @file
-## @brief Add, update, or delete a Blogger post or page through the
-## API.
-## @details For more details, see:
-## https://github.com/carmine560/blogger-posts
-
 curl_options=-fSs
 readonly API_SERVICE=https://www.googleapis.com/blogger/v3/blogs
 bp_test_function_suffix=.json
@@ -12,10 +6,6 @@ bp_test_function_suffix=.json
 ACCESS_TOKEN=$($get_access_token) || exit
 readonly ACCESS_TOKEN
 
-## @fn bp_check_variables()
-## @brief Check if the values of variables is zero.
-## @details Multiple variables are allowed.
-## @param $variable A variable.
 bp_check_variables() {
     local variable
     for variable in ACCESS_TOKEN API_SERVICE BLOG_ID; do
@@ -33,12 +23,6 @@ bp_check_variables() {
     done
 }
 
-## @fn bp_list_resources()
-## @brief List resources.
-## @param $resource_type A resource type that can have the value \c
-## posts or \c pages.
-## @param $parameter An optional parameter.
-## @return A response body in JSON.
 bp_list_resources() {
     if bp_check_variables && [ $# -ge 1 ] &&
             [ "$1" == posts -o "$1" == pages ]; then
@@ -51,12 +35,6 @@ bp_list_resources() {
     fi
 }
 
-## @fn bp_get_resource()
-## @brief Retrieve a resource.
-## @param $resource_type A resource type that can have the value \c
-## posts or \c pages.
-## @param $resource_id A resource (page or post) ID.
-## @return A response body in JSON.
 bp_get_resource() {
     if bp_check_variables && [ $# == 2 ] &&
             [ "$1" == posts -o "$1" == pages ] && [[ $2 =~ [0-9]+ ]]; then
@@ -69,14 +47,6 @@ bp_get_resource() {
     fi
 }
 
-## @fn bp_add_resource()
-## @brief Add a resource.
-## @details Multiple property-value pairs are allowed.
-## @param $resource_type A resource type that can have the value \c
-## posts or \c pages.
-## @param $property A property without quotes.
-## @param $value A value.
-## @return A response body in JSON.
 bp_add_resource() {
     if bp_check_variables && [ $# -ge 3 -a $(($# % 2)) == 1 ] &&
             [ "$1" == posts -o "$1" == pages ]; then
@@ -105,11 +75,6 @@ bp_add_resource() {
     fi
 }
 
-## @fn bp_delete_resource()
-## @brief Delete a resource.
-## @param $resource_type A resource type that can have the value \c
-## posts or \c pages.
-## @param $resource_id A resource (page or post) ID.
 bp_delete_resource() {
     if bp_check_variables && [ $# == 2 ] &&
             [ "$1" == posts -o "$1" == pages ] && [[ $2 =~ [0-9]+ ]]; then
@@ -122,15 +87,6 @@ bp_delete_resource() {
     fi
 }
 
-## @fn bp_partially_update_resource()
-## @brief Partially update a resource.
-## @details Multiple property-value pairs are allowed.
-## @param $resource_type A resource type that can have the value \c
-## posts or \c pages.
-## @param $resource_id A resource (page or post) ID.
-## @param $property A property without quotes.
-## @param $value A value.
-## @return A response body in JSON.
 bp_partially_update_resource() {
     if bp_check_variables && [ $# -ge 4 -a $(($# % 2)) == 0 ] &&
             [ "$1" == posts -o "$1" == pages ] && [[ $2 =~ [0-9]+ ]]; then
@@ -160,14 +116,6 @@ bp_partially_update_resource() {
     fi
 }
 
-## @fn bp_transition_resource_status()
-## @brief Transition the resource status.
-## @param $resource_type A resource type that can have the value \c
-## posts or \c pages.
-## @param $resource_id A resource (page or post) ID.
-## @param $status A status that can have the value \c publish or \c
-## revert.
-## @return A response body in JSON.
 bp_transition_resource_status() {
     if bp_check_variables && [ $# == 3 ] &&
             [ "$1" == posts -o "$1" == pages ] && [[ $2 =~ [0-9]+ ]] &&
@@ -181,9 +129,6 @@ bp_transition_resource_status() {
     fi
 }
 
-## @fn bp_test_function()
-## @brief Test a function.
-## @param $parameters A function and parameters.
 bp_test_function() {
     local base=$(basename "$0" .sh)
     if [ -d "$HOME/Downloads" ]; then
