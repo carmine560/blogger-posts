@@ -2,7 +2,6 @@ curl_options=-fSs
 readonly API_SERVICE=https://www.googleapis.com/blogger/v3/blogs
 bp_test_function_suffix=.json
 
-# Obtain an access token.
 ACCESS_TOKEN=$($get_access_token) || exit
 readonly ACCESS_TOKEN
 

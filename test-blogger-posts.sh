@@ -2,18 +2,14 @@
 
 set -o pipefail
 
-# Set the configurable variables.
 default_configuration="get_access_token='google-oauth-token.sh -a'
 readonly BLOG_ID=BLOG_ID
 bp_add_resource_parameters="
 . configuration.sh initialize || exit
 
-# Load functions to add, update, or delete a resource through the Blogger API.
 . blogger-posts.sh || exit
 
 for resource_type in posts pages; do
-    # Add a resource and assign the value of the key 'id' in the response body
-    # to the variable 'resource_id'.
     resource_id=$(bp_add_resource $resource_type title '"Resource Title"' \
                                   content '"<p>A paragraph.</p>"' |
                       jq -r .id)
@@ -25,8 +21,6 @@ for resource_type in posts pages; do
         exit 1
     fi
 
-    # Test each function that requires the variable 'resource_id' except for
-    # the function 'bp_list_resources'.
     bp_test_function bp_list_resources $resource_type status=live
     bp_test_function bp_get_resource $resource_type $resource_id
     bp_test_function bp_partially_update_resource $resource_type $resource_id \
