@@ -8,8 +8,8 @@ pages through the [API](https://developers.google.com/blogger) 3.0.
 
 ## Prerequisites ##
 
-`blogger-posts.sh` has been tested for Blogger on Debian on WSL and uses the
-following packages:
+`blogger-posts.sh` has been tested for Blogger on Debian Testing on WSL and
+uses the following packages:
 
   * [curl](https://curl.se/) for HTTP requests
   * [jq](https://jqlang.github.io/jq/) to filter JSON responses
