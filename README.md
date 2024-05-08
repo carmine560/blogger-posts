@@ -4,7 +4,7 @@
 API -->
 
 The `blogger-posts.sh` Bash script adds, updates, or deletes Blogger posts or
-pages through the [API](https://developers.google.com/blogger) v3.0.
+pages through the [API](https://developers.google.com/blogger) 3.0.
 
 ## Prerequisites ##
 
@@ -15,7 +15,7 @@ following packages:
   * [jq](https://jqlang.github.io/jq/) to filter JSON responses
   * [GnuPG](https://gnupg.org/index.html) to encrypt the configuration file
 
-Install each package as needed.  For example:
+Install each package as needed. For example:
 
 ``` shell
 sudo apt install curl
@@ -28,7 +28,7 @@ sudo apt install gpg
 The `google-oauth-token.sh`
 [authorization](https://developers.google.com/identity/protocols/oauth2) script
 will create and encrypt the `~/.config/$USER/google-oauth-token.cfg.gpg`
-configuration file if it does not exist.  It assumes that the default key pair
+configuration file if it does not exist. It assumes that the default key pair
 of GnuPG is your OpenPGP key pair.
 
 ### OAuth 2.0 Authorization Sequence ###
@@ -63,7 +63,7 @@ the Google API.
 
 The `test-blogger-posts.sh` testing script will create the
 `~/.config/$USER/test-blogger-posts.cfg` configuration file if it does not
-exist.  Replace the value of the `BLOG_ID` variable in it with yours.  Then:
+exist. Replace the value of the `BLOG_ID` variable in it with yours. Then:
 
 ``` shell
 test-blogger-posts.sh
@@ -74,7 +74,7 @@ if it does not exist and saves response bodies.
 
 ## `blogger-posts.sh` Usage ##
 
-The `blogger-posts.sh` script is a collection of the following functions.  To
+The `blogger-posts.sh` script is a collection of the following functions. To
 list resources that are `posts` or `pages`, pass an optional parameter as an
 argument if necessary:
 
