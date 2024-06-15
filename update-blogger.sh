@@ -11,7 +11,8 @@ title_start=TITLE_START
 title_end=TITLE_END
 body_start=BODY_START
 body_end=BODY_END
-body_modifier='
+body_modifier=
+pages_regex=PAGES_REGEX'
 . configuration.sh initialize || exit
 
 . blogger-posts.sh || exit
@@ -74,16 +75,11 @@ for file in $(git diff --name-only); do
             post_labels=$(echo $file |
                               sed -E 's/^([^,]+), (.+)\.[^.]+$/["\1", "\2"]/')
             if [ "$dry_run" != true ]; then
-                # TODO: add command line option -t
-                case $(sed -nE 's/.*const +PAGE_TYPE *= *\W(\w+)\W.*/\1/p' \
-                           "$file") in
-                    static_page)
-                        resource_type=pages
-                        ;;
-                    *)
-                        resource_type=posts
-                        ;;
-                esac
+                if [[ $file =~ $pages_regex ]]; then
+                    resource_type=pages
+                else
+                    resource_type=posts
+                fi
                 if bp_get_resource $resource_type $resource_id &>/dev/null;
                 then
                     status=live
