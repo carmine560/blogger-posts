@@ -2,7 +2,7 @@
 
 set -o pipefail
 
-default_configuration='get_access_token=GET_ACCESS_TOKEN
+default_configuration="get_access_token='google-oauth-token.sh -a'
 readonly BLOG_ID=BLOG_ID
 working_directory=WORKING_DIRECTORY
 id_regex=ID_REGEX
@@ -12,7 +12,7 @@ title_end=TITLE_END
 body_start=BODY_START
 body_end=BODY_END
 body_modifier=
-pages_regex=PAGES_REGEX'
+pages_regex=PAGES_REGEX"
 . configuration.sh initialize || exit
 
 . blogger-posts.sh || exit
