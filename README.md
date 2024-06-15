@@ -27,9 +27,10 @@ sudo apt install gpg
 
 The `google-oauth-token.sh`
 [authorization](https://developers.google.com/identity/protocols/oauth2) script
-will create and encrypt the `~/.config/$USER/google-oauth-token.cfg.gpg`
-configuration file if it does not exist. It assumes that the default key pair
-of GnuPG is your OpenPGP key pair.
+will create and encrypt the
+`~/.config/blogger-posts/google-oauth-token.cfg.gpg` configuration file if it
+does not exist. It assumes that the default key pair of GnuPG is your OpenPGP
+key pair.
 
 ### OAuth 2.0 Authorization Sequence ###
 
@@ -62,8 +63,8 @@ the Google API.
 ## `test-blogger-posts.sh` Usage ##
 
 The `test-blogger-posts.sh` testing script will create the
-`~/.config/$USER/test-blogger-posts.cfg` configuration file if it does not
-exist. Replace the value of the `BLOG_ID` variable in it with yours. Then:
+`~/.config/blogger-posts/test-blogger-posts.cfg` configuration file if it does
+not exist. Replace the value of the `BLOG_ID` variable in it with yours. Then:
 
 ``` shell
 test-blogger-posts.sh
