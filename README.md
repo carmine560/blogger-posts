@@ -114,6 +114,16 @@ argument:
 bp_transition_post_status posts RESOURCE_ID publish
 ```
 
+## `update-blogger.sh` Usage ##
+
+The `update-blogger.sh` script serves as a practical example of how to use
+`blogger-posts.sh`.
+
+### Options ###
+
+  * `-n`: do not perform HTTP requests and a commit
+  * `-s`: work silently
+
 ## License ##
 
 [MIT](LICENSE.md)
