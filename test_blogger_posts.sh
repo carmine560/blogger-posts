@@ -2,12 +2,12 @@
 
 set -o pipefail
 
-default_configuration="get_access_token='google-oauth-token.sh -a'
+default_configuration="get_access_token='google_oauth_token.sh -a'
 readonly BLOG_ID=BLOG_ID
 bp_add_resource_parameters="
 . configuration.sh initialize || exit
 
-. blogger-posts.sh || exit
+. blogger_posts.sh || exit
 
 for resource_type in posts pages; do
     resource_id=$(bp_add_resource $resource_type title '"Resource Title"' \

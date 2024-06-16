@@ -2,7 +2,7 @@
 
 set -o pipefail
 
-default_configuration="get_access_token='google-oauth-token.sh -a'
+default_configuration="get_access_token='google_oauth_token.sh -a'
 readonly BLOG_ID=BLOG_ID
 working_directory=WORKING_DIRECTORY
 id_regex=ID_REGEX
@@ -15,7 +15,7 @@ body_modifier=
 pages_regex=PAGES_REGEX"
 . configuration.sh initialize || exit
 
-. blogger-posts.sh || exit
+. blogger_posts.sh || exit
 
 # Parse the positional parameters.
 while getopts :ns OPT; do

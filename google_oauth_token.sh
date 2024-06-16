@@ -10,7 +10,7 @@ readonly CLIENT_SECRET=CLIENT_SECRET
 authorization_code=AUTHORIZATION_CODE
 access_token=
 refresh_token='
-. encrypt-configuration.sh initialize || exit
+. encrypt_configuration.sh initialize || exit
 
 got_return_authorization_url() {
     echo "https://accounts.google.com/o/oauth2/v2/auth?client_id=$CLIENT_ID&redirect_uri=http://localhost&response_type=code&scope=$SCOPE"
