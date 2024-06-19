@@ -36,7 +36,7 @@ key pair.
 
  1. Create client credentials by selecting the “Desktop app” application type
     in the [Google API Console](https://console.developers.google.com/).
- 2. Replace the values of the following variables with yours in the
+ 2. Replace the values of the following variables with your own in the
     configuration file:
     * `SCOPE`
     * `CLIENT_ID`
@@ -64,7 +64,8 @@ the Google API.
 
 The `test_blogger_posts.sh` testing script will create the
 `~/.config/blogger-posts/test_blogger_posts.cfg` configuration file if it does
-not exist. Replace the value of the `BLOG_ID` variable in it with yours. Then:
+not exist. Replace the value of the `BLOG_ID` variable in it with your own.
+Then, execute:
 
 ``` shell
 test_blogger_posts.sh
