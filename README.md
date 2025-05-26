@@ -128,7 +128,7 @@ The `update_blogger.sh` script serves as a practical example of how to use
 
 ## License ##
 
-[MIT](LICENSE.md)
+The [MIT License](LICENSE.md)
 
 ## Links ##
 
